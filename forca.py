@@ -33,13 +33,49 @@ def game():
     "Uva", "Umbu", "Veludo", "Zabumba", "Zimbro"]
 
     # Escolhe uma palavra da lista de forma aleatoria
-    palavra = random.choice(palavras)
+    palavra = random.choice(palavras).lower()
 
     # List comprehension 
-    letras_descobertas = ['-' for letras in palavra]
+    letras_descobertas = ['_' for letras in palavra]
 
     # numero de chances
-    chances = 6
+    chances = 12
 
     # Lista para letras erradas 
     letras_erradas = []
+
+    # Loop em quanto o numero de chances for maior que zero
+    while chances > 0:
+
+        print(" ".join(letras_descobertas))
+        print("\nChances restantes:", chances)
+        print("Letras erradas:", " ".join(letras_erradas))
+
+        #tentativas 
+        tentativa = input("\nDigite uma letra: ").lower()
+
+        #condição 
+        if tentativa in palavra:
+            index = 0
+
+            for letra in palavra:
+                if tentativa == letra:
+                    letras_descobertas[index] = letra
+                index += 1
+        else:
+            chances -= 1
+            letras_erradas.append(tentativa)
+
+        # Condição final
+        if "_" not in letras_descobertas:
+            print("\nVocê venceu, a palavra era:", palavra)
+            break
+        
+    # Condição final "DERROTA"
+    if "_" in letras_descobertas:
+        print("\nVoce perdeu, a palavra era: ", palavra)
+
+# Bloco main 
+if __name__ == "__main__":
+    game()
+    print("\nFIM\n")
