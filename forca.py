@@ -15,6 +15,85 @@ def linpar_tela():
     else:
         _ = system('clear')
 
+# Função que desenha a forca na tela
+def forc(chances):
+    # Lista de estagios da forca
+    stages = [ # estagio 6(Final)
+            '''
+                --------
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |     / \\
+                -
+            ''',
+            # Estagio 5
+            '''
+                 --------
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |     / 
+                -
+            ''',
+            # Estagio 4
+               '''
+                  --------
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |     
+                -
+            ''',
+            # Estagio 3
+               '''
+                  --------
+                |      |
+                |      O
+                |     \\|
+                |      |
+                |     
+                -
+            ''',
+            # Estagio 2
+               '''
+                 --------
+                |      |
+                |      O
+                |      |
+                |      |
+                |     
+                -
+            ''',
+            # Estagio 1
+               '''
+                ------
+                |    |
+                |    O
+                |  
+                |    
+                |   
+                |
+                -
+            ''',
+            # Estagio 0
+               '''
+                ------
+                |    |
+                |    
+                |  
+                |    
+                |   
+                |
+                -
+            '''
+
+    ]
+    return stages[chances]
+
 def game():
 
     linpar_tela()
@@ -39,14 +118,14 @@ def game():
     letras_descobertas = ['_' for letras in palavra]
 
     # numero de chances
-    chances = 12
+    chances = 6
 
     # Lista para letras erradas 
     letras_erradas = []
 
     # Loop em quanto o numero de chances for maior que zero
     while chances > 0:
-
+        print(forc(chances))
         print(" ".join(letras_descobertas))
         print("\nChances restantes:", chances)
         print("Letras erradas:", " ".join(letras_erradas))
@@ -63,6 +142,7 @@ def game():
                     letras_descobertas[index] = letra
                 index += 1
         else:
+            # Decremento
             chances -= 1
             letras_erradas.append(tentativa)
 
